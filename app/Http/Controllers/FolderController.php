@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 use App\Models\Folder;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateFolder;// 追加
+use Illuminate\Support\Facades\Auth;// 追加
+use DB;
 
 class FolderController extends Controller
 {
@@ -23,7 +25,13 @@ class FolderController extends Controller
           // タイトルに入力値を代入する
           $folder->title = $request->title;
           // インスタンスの状態をデータベースに書き込む
-          $folder->save();
+
+          // ★ ユーザーに紐づけて保存
+          Auth::user()->folders()->save($folder);
+
+          // $user = DB::table('users')->first();// あってるかわからないけど追加
+          // $folder->user_id = $user->id;// あってるかわからないけど追加
+          // $folder->save();
 
           return redirect()->route('tasks.index', [
               'id' => $folder->id,
