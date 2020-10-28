@@ -19,11 +19,22 @@ class FoldersTableSeeder extends Seeder
     public function run()
     {
         //
+<<<<<<< HEAD
+=======
+        $user = DB::table('users')->first();// ユーザと紐付けるため
+
+>>>>>>> develop
         $titles = ['プライベート', '仕事', '旅行'];
 
         foreach ($titles as $title) {
             DB::table('folders')->insert([
                 'title' => $title,
+<<<<<<< HEAD
+=======
+
+                'user_id' => $user->id, // ユーザと紐付けるため
+
+>>>>>>> develop
                 // 作成日と更新日には Carbon というライブラリを使って現在日時を入れています。
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
