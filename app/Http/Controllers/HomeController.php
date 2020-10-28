@@ -25,10 +25,10 @@ class HomeController extends Controller
     public function index()
     {
         // return view('home');
-        
+
         // ログインユーザーを取得する
         $user = Auth::user();
-
+        // dd($user);
         // ログインユーザーに紐づくフォルダを一つ取得する
         $folder = $user->folders()->first();
 
@@ -39,7 +39,7 @@ class HomeController extends Controller
 
         // フォルダがあればそのフォルダのタスク一覧にリダイレクトする
         return redirect()->route('tasks.index', [
-            'id' => $folder->id,
+            'folder' => $folder->id,
         ]);
     }
 }
